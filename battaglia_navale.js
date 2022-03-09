@@ -11,7 +11,7 @@ let bottone = {
 function creaCella(x, y) {
     let cella = {
         "posizioneX": x,
-        "posizioney": y,
+        "posizioneY": y,
         "selezionato": false,
         "cellaHTML": document.getElementById("")
     };
@@ -19,7 +19,7 @@ function creaCella(x, y) {
 };
 
 
-function creacraGriglia(sizeX, sizeY) {
+function creaGriglia(sizeX, sizeY) {
 
     for (let x = 0; x < sizeX; x++) {
         for (let y = 0; y < sizeY; y++) {
@@ -40,23 +40,31 @@ perttanto scorre e incrementa. nient'altro.
 per estrapolare l'indice e quindi la cella basterà introdurre in una variabile l'indice.
  */
 function selezionaCella(x, y) {
-    for (let x = 0; x <= griglia.length; x++) {
-        let cella = griglia[x];
-        affondaNave(cella)
-        if (cella.x == x && cella.y == y) {
-            posizionaNave(cella);
-            trycell(cella)
+    let cella = getCell(x, y);
+
+    if (cella != null) {
+        posizionaNave(cella);
+        trycell(cella);
+    }
+}
+
+function getCell(x, y) {
+    for (let i = 0; i < griglia.length; i++) {
+        const cella = griglia[i];
+
+        if (cella.posizioneX == x && cella.posizioneY == y) {
+            return cella;
         }
+    }
 
-    };
-
-};
-
+    return null;
+}
 
 function posizionaNave(cella) {
-    cella.cellaHTML.style.backgroundColor = "black";
-    cella.selezionato = "true";
-};
+    cella.selezionato = true;
+    //cella.cellaHTML.style.backgroundColor = "black";
+
+}
 
 
 /*avviamo il gioco come?
@@ -81,12 +89,19 @@ function onclick(bottone) {
 
 function trycell(cella) {
     if (cella.selezionato == false) {
-        alert("Cella vuota");
-    } if (cella.selezionato == true && bottone.cliccato == false) {
-        alert("cella gia' selezionata");
-    } if (cella.selezionato == true && bottone.cliccato == true) {
-        alert("Colpita");
+        console.log("Cella vuota");
+        return;
+    }
+
+    if (cella.selezionato == true && bottone.cliccato == false) {
+        console.log("cella gia' selezionata");
+        return;
+    }
+
+    if (cella.selezionato == true && bottone.cliccato == true) {
+        console.log("Colpita");
         cella.cellaHTML.style.backgroundColor = "red";
+        return;
     };
 
 };
@@ -101,10 +116,24 @@ let container = document.getElementById("container");
 function creaCellaHTML() {
     let row = document.createElement("div");
     row.setAttribute("class", "row");
-    
+
 }
 
+function test() {
+    creaGriglia(10, 10);
+    const cella = getCell(0, 0);
 
-creacraGriglia(10, 10);
-console.log(griglia);
+    if (cella.selezionato != false) {
+        alert("selezionato non è false")
+    }
 
+    selezionaCella(0, 0);
+
+    if (cella.selezionato != true) {
+        alert("selezionato non è true")
+    }
+
+    alert("Perfetto, sei top!");
+}
+
+test();
