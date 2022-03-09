@@ -44,7 +44,7 @@ function selezionaCella(x, y) {
 
     if (cella != null) {
         posizionaNave(cella);
-        trycell(cella);
+        tryCell(cella);
     }
 }
 
@@ -79,6 +79,7 @@ function avviaGioco() {
 
 function onclick(bottone) {
     bottone.addEventListener("click", function () {
+        onButtonPressed();
         avviaGioco();
         bottone.cliccato = true;
     });
@@ -87,7 +88,7 @@ function onclick(bottone) {
 
 
 
-function trycell(cella) {
+function tryCell(cella) {
     if (cella.selezionato == false) {
         console.log("Cella vuota");
         return;
@@ -119,6 +120,8 @@ function creaCellaHTML() {
 
 }
 
+/********************************************test************************************* */
+
 function test() {
     creaGriglia(10, 10);
     const cella = getCell(0, 0);
@@ -134,6 +137,9 @@ function test() {
     }
 
     alert("Perfetto, sei top!");
+
+
+
 }
 
 test();
