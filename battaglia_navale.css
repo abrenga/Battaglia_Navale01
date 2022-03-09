@@ -1,0 +1,5 @@
+.mycol{
+    flex: 1 0 0%;
+    margin: 0;
+    border: black solid 1px;
+}
