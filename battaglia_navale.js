@@ -72,6 +72,8 @@ function posizionaNave(cella) {
 al bottone? */
 function avviaGioco() {
     grigliaHTLM.cellaHTML.style.backgroundColor = "white";
+    console.log("sono stato cliccato")
+    
 
 
 }
@@ -83,6 +85,13 @@ function onclick(bottone) {
         avviaGioco();
         bottone.cliccato = true;
     });
+
+}
+
+
+function onButtonPressed(){
+    avviaGioco();
+    bottone.cliccato = true;
 
 }
 
@@ -137,6 +146,7 @@ function test() {
     }
 
     alert("Perfetto, sei top!");
+    onButtonPressed()
 
 
 
